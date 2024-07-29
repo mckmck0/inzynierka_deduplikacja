@@ -1,14 +1,11 @@
 import datetime as _dt
 import pydantic as _pydantic
 
-class _BaseContact(_pydantic.BaseModel):
-    first_name: str
-    last_name: str
+class _BaseUser(_pydantic.BaseModel):
     email: str
-    phone_number: str
 
 
-class Contact(_BaseContact):
+class User(_BaseUser):
     id: int
     date_created: _dt.datetime
 
@@ -16,5 +13,5 @@ class Contact(_BaseContact):
         from_attributes = True
 
 
-class CreateContact(_BaseContact):
+class CreateUser(_BaseUser):
     pass

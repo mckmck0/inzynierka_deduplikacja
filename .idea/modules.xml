@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/inzynierka-deduplikacja.iml" filepath="$PROJECT_DIR$/.idea/inzynierka-deduplikacja.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/inzynierka_deduplikacja.iml" filepath="$PROJECT_DIR$/.idea/inzynierka_deduplikacja.iml" />
     </modules>
   </component>
 </project>

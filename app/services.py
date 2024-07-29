@@ -9,8 +9,6 @@ if TYPE_CHECKING:
 
 def _add_tables():
     _database.Base.metadata.create_all(bind=_database.engine)
-    print("Tables created successfully")
-
 
 def get_db():
     db = _database.SessionLocal()
@@ -19,37 +17,14 @@ def get_db():
     finally:
         db.close()
 
-
-async def create_contact(contact: _schemas.CreateContact,
-                         db: "Session") -> _schemas.Contact:
-    contact = _models.Contact(**contact.dict())
-    db.add(contact)
+async def create_user(user: _schemas.CreateUser,
+                         db: "Session") -> _schemas.User:
+    user = _models.User(**user.dict())
+    db.add(user)
     db.commit()
-    db.refresh(contact)
-    return _schemas.Contact.from_orm(contact)
+    db.refresh(user)
+    return _schemas.User.from_orm(user)
 
-
-async def get_contacts(db: "Session") -> list[_schemas.Contact]:
-    contacts = db.query(_models.Contact).all()
-    return list(map(_schemas.Contact.from_orm, contacts))
-
-
-async def get_contact(contact_id: int, db: "Session"):
-    contact = db.query(_models.Contact).filter(_models.Contact.id == contact_id).first()
-    return contact
-
-
-async def delete_contact(contact: _models.Contact, db: "Session"):
-    db.delete(contact)
-    db.commit()
-
-
-async def update_contact(contact: _models.Contact,
-                         contact_data: _schemas.CreateContact,
-                         db: "Session") -> _schemas.Contact:
-    for field, value in contact_data:
-        setattr(contact, field, value)
-    db.commit()
-    db.refresh(contact)
-
-    return _schemas.Contact.from_orm(contact)
+async def get_user(id: int, db: "Session"):
+    user = db.query(_models.User).filter(_models.User.id == id).first()
+    return user
